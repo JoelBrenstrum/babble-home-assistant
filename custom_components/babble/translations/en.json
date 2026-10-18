@@ -1,0 +1,462 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to babble",
+        "description": "Enter the address you use to open babble.",
+        "data": {
+          "url": "babble address"
+        },
+        "data_description": {
+          "url": "For example https://babble.example.com"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Sign in to babble again",
+        "description": "babble signed Home Assistant out of {url}. Submit to get a new sign-in code to approve."
+      },
+      "retry": {
+        "title": "The code expired",
+        "description": "The sign-in code wasn't approved in time. Submit to get a new one."
+      }
+    },
+    "progress": {
+      "approve": "On a phone or computer that's signed in to babble, open {url} and approve code **{code}**.\n\nHome Assistant will sign in as you. You'll find it afterwards in babble under Settings → Signed-in devices, where you can rename it or sign it out."
+    },
+    "error": {
+      "cannot_connect": "Couldn't reach babble at that address.",
+      "no_device_sign_in": "This babble server doesn't allow signing in from another device. Ask whoever runs it to set the service role key."
+    },
+    "abort": {
+      "already_configured": "This babble account is already set up.",
+      "cannot_connect": "Couldn't reach babble.",
+      "no_device_sign_in": "This babble server doesn't allow signing in from another device.",
+      "sign_in_failed": "Signing in to babble failed. Try again.",
+      "reauth_successful": "Signed in to babble again.",
+      "wrong_account": "That code was approved by a different babble account."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "asleep": {
+        "name": "Asleep"
+      },
+      "feeding": {
+        "name": "Feeding"
+      },
+      "feed_overdue": {
+        "name": "Feed overdue"
+      }
+    },
+    "sensor": {
+      "profile": {
+        "name": "Profile"
+      },
+      "sleep": {
+        "name": "Sleep",
+        "state": {
+          "active": "Asleep",
+          "paused": "Paused",
+          "none": "Awake"
+        }
+      },
+      "current_sleep": {
+        "name": "Current sleep"
+      },
+      "awake_since": {
+        "name": "Awake since"
+      },
+      "nursing": {
+        "name": "Breastfeed",
+        "state": {
+          "active": "Feeding",
+          "paused": "Paused",
+          "none": "Not feeding"
+        }
+      },
+      "next_breast_side": {
+        "name": "Next breast side",
+        "state": {
+          "left": "Left",
+          "right": "Right"
+        }
+      },
+      "last_feed": {
+        "name": "Last feed"
+      },
+      "next_feed_due": {
+        "name": "Next feed due"
+      },
+      "bottle": {
+        "name": "Last bottle"
+      },
+      "solids": {
+        "name": "Last solids"
+      },
+      "nappy": {
+        "name": "Last nappy"
+      },
+      "pumping": {
+        "name": "Pumping",
+        "state": {
+          "active": "Pumping",
+          "paused": "Paused",
+          "none": "Not pumping"
+        }
+      },
+      "growth": {
+        "name": "Last growth"
+      },
+      "weight": {
+        "name": "Weight"
+      },
+      "length": {
+        "name": "Length"
+      },
+      "head": {
+        "name": "Head"
+      },
+      "sleep_today": {
+        "name": "Sleep today"
+      },
+      "naps_today": {
+        "name": "Naps today",
+        "unit_of_measurement": "naps"
+      },
+      "feeds_today": {
+        "name": "Feeds today",
+        "unit_of_measurement": "feeds"
+      },
+      "bottle_today": {
+        "name": "Bottle today"
+      },
+      "wet_nappies_today": {
+        "name": "Wet nappies today",
+        "unit_of_measurement": "nappies"
+      },
+      "dirty_nappies_today": {
+        "name": "Dirty nappies today",
+        "unit_of_measurement": "nappies"
+      },
+      "predicted_next_sleep": {
+        "name": "Predicted next sleep"
+      },
+      "predicted_next_feed": {
+        "name": "Predicted next feed"
+      }
+    },
+    "switch": {
+      "sleep_timer": {
+        "name": "Sleep timer"
+      },
+      "nursing_left": {
+        "name": "Breastfeed left"
+      },
+      "nursing_right": {
+        "name": "Breastfeed right"
+      }
+    }
+  },
+  "exceptions": {
+    "invalid_device": {
+      "message": "Pick a baby from babble."
+    },
+    "not_loaded": {
+      "message": "babble isn't connected right now."
+    }
+  },
+  "services": {
+    "start_sleep": {
+      "name": "Start sleep",
+      "description": "Starts a nap or night sleep.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "started_at": {
+          "name": "Started at",
+          "description": "When it started. Leave empty for now."
+        }
+      }
+    },
+    "pause_sleep": {
+      "name": "Pause sleep",
+      "description": "Pauses the running sleep while the baby is awake.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        }
+      }
+    },
+    "resume_sleep": {
+      "name": "Resume sleep",
+      "description": "Resumes a paused sleep.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        }
+      }
+    },
+    "end_sleep": {
+      "name": "End sleep",
+      "description": "Ends the running sleep.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "ended_at": {
+          "name": "Ended at",
+          "description": "When it ended. Leave empty for now."
+        }
+      }
+    },
+    "cancel_sleep": {
+      "name": "Discard sleep",
+      "description": "Deletes the running sleep without saving it.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        }
+      }
+    },
+    "start_nursing": {
+      "name": "Start breastfeed",
+      "description": "Starts a breastfeed on one side.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "side": {
+          "name": "Side",
+          "description": "Which side to start on."
+        },
+        "started_at": {
+          "name": "Started at",
+          "description": "When it started. Leave empty for now."
+        }
+      }
+    },
+    "pause_nursing": {
+      "name": "Pause breastfeed",
+      "description": "Pauses the running breastfeed.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        }
+      }
+    },
+    "resume_nursing": {
+      "name": "Resume breastfeed",
+      "description": "Resumes a paused breastfeed.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "side": {
+          "name": "Side",
+          "description": "Which side to resume on. Leave empty for the same side."
+        }
+      }
+    },
+    "switch_nursing_side": {
+      "name": "Switch breastfeed side",
+      "description": "Switches the running breastfeed to the other side.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        }
+      }
+    },
+    "end_nursing": {
+      "name": "End breastfeed",
+      "description": "Ends the running breastfeed.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "ended_at": {
+          "name": "Ended at",
+          "description": "When it ended. Leave empty for now."
+        }
+      }
+    },
+    "cancel_nursing": {
+      "name": "Discard breastfeed",
+      "description": "Deletes the running breastfeed without saving it.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        }
+      }
+    },
+    "log_bottle": {
+      "name": "Log bottle",
+      "description": "Logs a bottle feed.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "amount_ml": {
+          "name": "Amount",
+          "description": "How much was in the bottle, in ml."
+        },
+        "content": {
+          "name": "Content",
+          "description": "What was in the bottle."
+        },
+        "left_over_ml": {
+          "name": "Left over",
+          "description": "How much was left, in ml."
+        },
+        "started_at": {
+          "name": "Time",
+          "description": "When it was. Leave empty for now."
+        }
+      }
+    },
+    "log_nappy": {
+      "name": "Log nappy",
+      "description": "Logs a nappy change. Leave wet and dirty off for a dry nappy.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "wet": {
+          "name": "Wet",
+          "description": "The nappy was wet."
+        },
+        "dirty": {
+          "name": "Dirty",
+          "description": "The nappy was dirty."
+        },
+        "wet_size": {
+          "name": "Wee size",
+          "description": "How much wee."
+        },
+        "poo_size": {
+          "name": "Poo size",
+          "description": "How much poo."
+        },
+        "colours": {
+          "name": "Poo colours",
+          "description": "Up to two colours."
+        },
+        "textures": {
+          "name": "Poo textures",
+          "description": "What the poo was like."
+        },
+        "rash": {
+          "name": "Rash",
+          "description": "There was nappy rash."
+        },
+        "notes": {
+          "name": "Notes",
+          "description": "Anything else."
+        },
+        "started_at": {
+          "name": "Time",
+          "description": "When it was. Leave empty for now."
+        }
+      }
+    },
+    "log_solids": {
+      "name": "Log solids",
+      "description": "Logs a solids meal.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "foods": {
+          "name": "Foods",
+          "description": "What they ate."
+        },
+        "amount": {
+          "name": "Amount",
+          "description": "How much they ate."
+        },
+        "reaction": {
+          "name": "Reaction",
+          "description": "How they liked it."
+        },
+        "notes": {
+          "name": "Notes",
+          "description": "Anything else."
+        },
+        "started_at": {
+          "name": "Time",
+          "description": "When it was. Leave empty for now."
+        }
+      }
+    },
+    "log_pump": {
+      "name": "Log pump",
+      "description": "Logs a pumping session.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "left_ml": {
+          "name": "Left",
+          "description": "Amount from the left side, in ml."
+        },
+        "right_ml": {
+          "name": "Right",
+          "description": "Amount from the right side, in ml."
+        },
+        "total_ml": {
+          "name": "Total",
+          "description": "Total amount, in ml, if you didn't measure each side."
+        },
+        "duration_min": {
+          "name": "Duration",
+          "description": "How long it took, in minutes."
+        },
+        "ended_at": {
+          "name": "Ended at",
+          "description": "When it ended. Leave empty for now."
+        }
+      }
+    },
+    "log_growth": {
+      "name": "Log growth",
+      "description": "Logs a weight, length or head measurement.",
+      "fields": {
+        "device_id": {
+          "name": "Baby",
+          "description": "The baby."
+        },
+        "weight_kg": {
+          "name": "Weight",
+          "description": "Weight in kg."
+        },
+        "length_cm": {
+          "name": "Length",
+          "description": "Length in cm."
+        },
+        "head_cm": {
+          "name": "Head",
+          "description": "Head circumference in cm."
+        },
+        "started_at": {
+          "name": "Time",
+          "description": "When it was measured. Leave empty for now."
+        }
+      }
+    }
+  }
+}

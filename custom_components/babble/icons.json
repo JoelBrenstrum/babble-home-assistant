@@ -1,0 +1,58 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "asleep": { "default": "mdi:sleep-off", "state": { "on": "mdi:sleep" } },
+      "feeding": { "default": "mdi:mother-nurse" },
+      "feed_overdue": { "default": "mdi:baby-bottle-outline", "state": { "on": "mdi:baby-bottle" } }
+    },
+    "sensor": {
+      "profile": { "default": "mdi:baby-face-outline" },
+      "sleep": { "default": "mdi:sleep", "state": { "none": "mdi:sleep-off", "paused": "mdi:pause-circle-outline" } },
+      "current_sleep": { "default": "mdi:timer-sand" },
+      "awake_since": { "default": "mdi:weather-sunny" },
+      "nursing": { "default": "mdi:mother-nurse" },
+      "next_breast_side": { "default": "mdi:swap-horizontal" },
+      "last_feed": { "default": "mdi:baby-bottle-outline" },
+      "next_feed_due": { "default": "mdi:clock-alert-outline" },
+      "bottle": { "default": "mdi:baby-bottle" },
+      "solids": { "default": "mdi:food-apple" },
+      "nappy": { "default": "mdi:human-baby-changing-table" },
+      "pumping": { "default": "mdi:mother-heart" },
+      "growth": { "default": "mdi:human-male-height" },
+      "weight": { "default": "mdi:scale-bathroom" },
+      "length": { "default": "mdi:human-male-height-variant" },
+      "head": { "default": "mdi:tape-measure" },
+      "sleep_today": { "default": "mdi:sleep" },
+      "naps_today": { "default": "mdi:weather-night" },
+      "feeds_today": { "default": "mdi:baby-bottle-outline" },
+      "bottle_today": { "default": "mdi:baby-bottle" },
+      "wet_nappies_today": { "default": "mdi:water" },
+      "dirty_nappies_today": { "default": "mdi:emoticon-poop" },
+      "predicted_next_sleep": { "default": "mdi:crystal-ball" },
+      "predicted_next_feed": { "default": "mdi:crystal-ball" }
+    },
+    "switch": {
+      "sleep_timer": { "default": "mdi:sleep" },
+      "nursing_left": { "default": "mdi:arrow-left-circle-outline" },
+      "nursing_right": { "default": "mdi:arrow-right-circle-outline" }
+    }
+  },
+  "services": {
+    "start_sleep": { "service": "mdi:sleep" },
+    "pause_sleep": { "service": "mdi:pause" },
+    "resume_sleep": { "service": "mdi:play" },
+    "end_sleep": { "service": "mdi:stop" },
+    "cancel_sleep": { "service": "mdi:delete-outline" },
+    "start_nursing": { "service": "mdi:mother-nurse" },
+    "pause_nursing": { "service": "mdi:pause" },
+    "resume_nursing": { "service": "mdi:play" },
+    "switch_nursing_side": { "service": "mdi:swap-horizontal" },
+    "end_nursing": { "service": "mdi:stop" },
+    "cancel_nursing": { "service": "mdi:delete-outline" },
+    "log_bottle": { "service": "mdi:baby-bottle" },
+    "log_nappy": { "service": "mdi:human-baby-changing-table" },
+    "log_solids": { "service": "mdi:food-apple" },
+    "log_pump": { "service": "mdi:mother-heart" },
+    "log_growth": { "service": "mdi:human-male-height" }
+  }
+}

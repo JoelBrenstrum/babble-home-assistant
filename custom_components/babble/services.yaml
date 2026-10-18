@@ -1,0 +1,318 @@
+start_sleep:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    started_at:
+      selector:
+        datetime: {}
+pause_sleep:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+resume_sleep:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+end_sleep:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    ended_at:
+      selector:
+        datetime: {}
+cancel_sleep:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+start_nursing:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    side:
+      default: left
+      selector:
+        select:
+          options:
+          - left
+          - right
+    started_at:
+      selector:
+        datetime: {}
+pause_nursing:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+resume_nursing:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    side:
+      selector:
+        select:
+          options:
+          - left
+          - right
+switch_nursing_side:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+end_nursing:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    ended_at:
+      selector:
+        datetime: {}
+cancel_nursing:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+log_bottle:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    amount_ml:
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 2000
+          step: 5
+          unit_of_measurement: ml
+          mode: box
+    content:
+      selector:
+        select:
+          options:
+          - breast_milk
+          - formula
+          - mixed
+          - other
+          multiple: false
+    left_over_ml:
+      selector:
+        number:
+          min: 0
+          max: 2000
+          step: 5
+          unit_of_measurement: ml
+          mode: box
+    started_at:
+      selector:
+        datetime: {}
+log_nappy:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    wet:
+      selector:
+        boolean: {}
+    dirty:
+      selector:
+        boolean: {}
+    wet_size:
+      selector:
+        select:
+          options:
+          - tiny
+          - little
+          - medium
+          - large
+          - massive
+          multiple: false
+    poo_size:
+      selector:
+        select:
+          options:
+          - tiny
+          - little
+          - medium
+          - large
+          - massive
+          multiple: false
+    colours:
+      selector:
+        select:
+          options:
+          - yellow
+          - mustard
+          - green
+          - dark_green
+          - brown
+          - orange
+          - black
+          - red
+          - white_grey
+          multiple: true
+    textures:
+      selector:
+        select:
+          options:
+          - runny
+          - loose
+          - seedy
+          - pasty
+          - formed
+          - mucousy
+          - solid
+          - pebbles
+          - diarrhea
+          multiple: true
+    rash:
+      selector:
+        boolean: {}
+    notes:
+      selector:
+        text: {}
+    started_at:
+      selector:
+        datetime: {}
+log_solids:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    foods:
+      required: true
+      selector:
+        text:
+          multiple: true
+    amount:
+      selector:
+        select:
+          options:
+          - taste
+          - some
+          - lots
+          multiple: false
+    reaction:
+      selector:
+        select:
+          options:
+          - loved
+          - liked
+          - unsure
+          - disliked
+          multiple: false
+    notes:
+      selector:
+        text: {}
+    started_at:
+      selector:
+        datetime: {}
+log_pump:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    left_ml:
+      selector:
+        number:
+          min: 0
+          max: 2000
+          step: 5
+          unit_of_measurement: ml
+          mode: box
+    right_ml:
+      selector:
+        number:
+          min: 0
+          max: 2000
+          step: 5
+          unit_of_measurement: ml
+          mode: box
+    total_ml:
+      selector:
+        number:
+          min: 0
+          max: 2000
+          step: 5
+          unit_of_measurement: ml
+          mode: box
+    duration_min:
+      selector:
+        number:
+          min: 0
+          max: 180
+          unit_of_measurement: min
+          mode: box
+    ended_at:
+      selector:
+        datetime: {}
+log_growth:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: babble
+    weight_kg:
+      selector:
+        number:
+          min: 0.2
+          max: 50
+          step: 0.01
+          unit_of_measurement: kg
+          mode: box
+    length_cm:
+      selector:
+        number:
+          min: 20
+          max: 200
+          step: 0.1
+          unit_of_measurement: cm
+          mode: box
+    head_cm:
+      selector:
+        number:
+          min: 15
+          max: 70
+          step: 0.1
+          unit_of_measurement: cm
+          mode: box
+    started_at:
+      selector:
+        datetime: {}

@@ -1,0 +1,7 @@
+__pycache__
+.pytest_cache
+.ruff_cache
+.venv
+.coverage
+config/*
+!config/configuration.yaml
